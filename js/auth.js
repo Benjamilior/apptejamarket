@@ -1,3 +1,5 @@
+  // Codigo de Google para acceder a leer la API
+  
   /* exported gapiLoaded */
   /* exported gisLoaded */
   /* exported handleAuthClick */
