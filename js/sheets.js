@@ -3,13 +3,16 @@ console.log("wena2")
 const hoja = "Verificador";
 const rango = "!P:AA";
 const SPREADSHEET = "1AKH4V5PwfdXBhPPaUBJbQKwBqBk5fLdi7OCiJHoUnac";
-ean_encontrar = 7802420151057;
+ean_encontrar = 7804630010803;
+let codigoEscaneado;
 let turnos;
+
 
 
 //Lector de codigo de barra
 document.addEventListener("DOMContentLoaded", () => {
 	const $resultados = document.querySelector("#resultado");
+  
 	Quagga.init({
 		inputStream: {
 			constraints: {
@@ -18,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			},
 			name: "Live",
 			type: "LiveStream",
-			target: document.querySelector('#contenedor'), // Pasar el elemento del DOM
+			target: document.querySelector('#contenedor'), 
 		},
 		decoder: {
 			readers: ["ean_reader"]
@@ -33,16 +36,15 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	Quagga.onDetected((data) => {
-        codigoEscaneado = data.codeResult.code;
-		$resultados.textContent = codigoEscaneado;
-		// Imprimimos todo el data para que puedas depurar
-       
-		// console.log(codigo_escaneado);
-        console.log(codigoEscaneado);
+    codigoEscaneado = data.codeResult.code; //Trae el codigo de barra
+		$resultados.textContent = codigoEscaneado; //Se lo asigna en el DOOM
+    console.log(codigoEscaneado)
+
+		
         
 	});
 });
-
+console.log(codigoEscaneado)
 
 //Funcion para traer toda la informacion
 async function getTurnos() {
@@ -85,15 +87,18 @@ async function getTurnos() {
     };
     turnos.push(nuevoTurno);
   });
+
+
   console.log(turnos)
 
-//Para encontrar el EAN que estoy buscando
+// Para encontrar el EAN que estoy buscando
 
-  let encontrado = turnos.find(elemento => elemento.EAN == ean_encontrar );
+  let encontrado = turnos.find((elemento) => elemento.EAN == ean_encontrar );
   console.log(encontrado.EAN);
   console.log(encontrado.nombre_producto);
   console.log(encontrado.lider_venta);
   console.log(encontrado[4]);
+
 
   const contenedor = document.getElementById("contenido");
 
@@ -109,25 +114,3 @@ async function getTurnos() {
 
 
 
-
-
-
-// async function editTurno(id, contenido) {
-//   const update = [
-//     contenido.id,
-//     contenido.cliente,
-//     contenido.email,
-//     contenido.modelo,
-//     contenido.problema,
-//     new Date().toISOString(),
-//     contenido.comentario,
-//   ]
-//   const filaAEditar = parseInt(id)+1;
-//   response = await gapi.client.sheets.spreadsheets.values.update({
-//     spreadsheetId: SPREADSHEET,
-//     range: `${hoja}!A${filaAEditar}:G${filaAEditar}`,
-//     values: [update],
-//     valueInputOption:"USER_ENTERED"
-//   });
-//   return response;
-// }
