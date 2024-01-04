@@ -85,3 +85,19 @@
   footer a{
     color: var(--color-texto);
   }
+  #contenedor video{
+    max-width: 100%;
+    width: 200px;
+  }
+  #contenedor{
+    max-width: 200px;
+    position:relative;
+  }
+  canvas{
+    max-width: 200px;
+  }
+  canvas.drawingBuffer{
+    position:absolute;
+    top:0;
+    left:0;
+  }

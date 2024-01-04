@@ -6,6 +6,44 @@ const SPREADSHEET = "1AKH4V5PwfdXBhPPaUBJbQKwBqBk5fLdi7OCiJHoUnac";
 ean_encontrar = 7802420151057;
 let turnos;
 
+
+//Lector de codigo de barra
+document.addEventListener("DOMContentLoaded", () => {
+	const $resultados = document.querySelector("#resultado");
+	Quagga.init({
+		inputStream: {
+			constraints: {
+				width: 1920,
+				height: 1080,
+			},
+			name: "Live",
+			type: "LiveStream",
+			target: document.querySelector('#contenedor'), // Pasar el elemento del DOM
+		},
+		decoder: {
+			readers: ["ean_reader"]
+		}
+	}, function (err) {
+		if (err) {
+			console.log(err);
+			return
+		}
+		console.log("Iniciado correctamente");
+		Quagga.start();
+	});
+
+	Quagga.onDetected((data) => {
+        codigoEscaneado = data.codeResult.code;
+		$resultados.textContent = codigoEscaneado;
+		// Imprimimos todo el data para que puedas depurar
+       
+		// console.log(codigo_escaneado);
+        console.log(codigoEscaneado);
+        
+	});
+});
+
+
 //Funcion para traer toda la informacion
 async function getTurnos() {
   let response;
