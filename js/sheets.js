@@ -3,7 +3,7 @@ console.log("wena2")
 const hoja = "Verificador";
 const rango = "!P:AA";
 const SPREADSHEET = "1AKH4V5PwfdXBhPPaUBJbQKwBqBk5fLdi7OCiJHoUnac";
-ean_encontrar = 7804630010803;
+// ean_encontrar = 7804630010803;
 let codigoEscaneado;
 let turnos;
 
@@ -37,8 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	Quagga.onDetected((data) => {
     codigoEscaneado = data.codeResult.code; //Trae el codigo de barra
+    ean_encontrar = codigoEscaneado
 		$resultados.textContent = codigoEscaneado; //Se lo asigna en el DOOM
     console.log(codigoEscaneado)
+    getTurnos();
 
 		
         
