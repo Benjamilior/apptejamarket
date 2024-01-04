@@ -101,3 +101,32 @@
     top:0;
     left:0;
   }
+
+
+
+
+  .eanencontrado{
+    border: 1px solid var(--color-fondo);
+    max-width: 400px;
+    padding: 10px;
+    background-color: var(--color-fondo-tarjeta);
+    user-select: none;
+    cursor: pointer;
+   
+
+  }
+  .eanencontrado:hover, .eanencontrado.seleccionado{
+    background-color: var(--color-acento);
+    color: var(--color-fondo);
+  }
+  
+  .eanencontrado:hover h3, .eanencontrado.seleccionado h3{
+    color: var(--color-fondo);
+  }
+  
+  .eanencontrado p{
+    White-Space: nowrap;
+    overflow: hidden;
+    Text-overflow: ellipsis;
+    margin: 0;
+  }

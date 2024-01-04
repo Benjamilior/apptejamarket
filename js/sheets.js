@@ -105,8 +105,19 @@ async function getTurnos() {
   const contenedor = document.getElementById("contenido");
 
  // Crea un nuevo elemento HTML para mostrar el objeto
- const parrafo = document.createElement("p");
- parrafo.textContent = `Nombre: ${encontrado.EAN}, Edad: ${encontrado.nombre_producto}}`;
+ const parrafo = document.createElement("div");
+ parrafo.classList ="eanencontrado"
+ parrafo.innerHTML = 
+ `
+ <h4>EAN: ${encontrado.EAN}</h4>
+ <p>Nombre Prodcuto: ${encontrado.nombre_producto}</p>
+ <p>Precio Lider: ${encontrado.lider_venta}</p>
+ <p>Precio Jumbo: ${encontrado.jumbo_venta}</p>
+ <p>Precio Unimarc: ${encontrado.unimarc_venta}</p>
+ <p>Precio Santa Isabel: ${encontrado.santa_venta}</p>
+ <p>Precio Eltit: ${encontrado.eltit_venta}</p>
+
+`;
 
  // Agrega el elemento al contenedor en el DOM
  contenedor.appendChild(parrafo);
